@@ -4,7 +4,11 @@ class Graph(object):
     '''
     def __init__(self):
         self.vertices = []
+        #a list of vertex label
+        #the label can be a number, a coordinate pair in a 2D grid, etc.
         self.edges = {}
+        #keys: a tuple of two vertices that are connected
+        #values: the length of the edge
 
     def __str__(self):
         string = 'Graph:'
@@ -46,3 +50,11 @@ class Graph(object):
 
 if __name__ == '__main__':
     graph = Graph()
+    graph.add_vertex(1, {2 : 7, 3 : 9, 6 : 14})
+    graph.add_vertex(2, {3 : 10, 4 : 15})
+    graph.add_vertex(3, {4 : 11, 6 : 2})
+    graph.add_vertex(4, {5 : 6})
+    graph.add_vertex(5, {6 : 9})
+    graph.add_vertex(6, {})
+    print(graph)
+##    print(graph.edges)
