@@ -73,7 +73,7 @@ class RoutePlanningSimulator(object):
             #draw new position
             self.fieldCanvas.create_rectangle(x*self.gridDelta, y*self.gridDelta, (x+1)*self.gridDelta, (y+1)*self.gridDelta, fill='blue')
             self.startPosition = (x, y)
-            print(f'self.startPosition: {self.startPosition}')
+##            print(f'self.startPosition: {self.startPosition}')
         else: #invalid position: a wall is selected
             pass
 
@@ -88,7 +88,7 @@ class RoutePlanningSimulator(object):
             #draw new position
             self.fieldCanvas.create_rectangle(x*self.gridDelta, y*self.gridDelta, (x+1)*self.gridDelta, (y+1)*self.gridDelta, fill='red')
             self.endPosition = (x, y)
-            print(f'self.endPosition: {self.endPosition}')
+##            print(f'self.endPosition: {self.endPosition}')
         else: #invalid position: a wall is selected
             pass
 
@@ -142,8 +142,8 @@ class RoutePlanningSimulator(object):
         m, n = self.w, self.h
         self.start = self.startPosition[1] * m + self.startPosition[0]
         self.end = self.endPosition[1] * m + self.endPosition[0]
-        print(f'start: {self.startPosition}, {self.start}')
-        print(f'end: {self.endPosition}, {self.end}')
+##        print(f'start: {self.startPosition}, {self.start}')
+##        print(f'end: {self.endPosition}, {self.end}')
         self.dist, self.prev = dijkstra_algorithm.Dijkstra(self.graph, self.startPosition, self.endPosition)
 
     def getRoute(self):
