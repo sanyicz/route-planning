@@ -11,7 +11,15 @@ class RoutePlanningSimulator(object):
         self.gridSize = gridSize
         
         self.buttonsFrame = tk.Frame(self.window)
-        self.buttonsFrame.grid(row=0, column=0)
+        self.buttonsFrame.grid(row=0, column=0, sticky='W')
+        self.commandButton = tk.Button(self.buttonsFrame, text='Finish grid', command=self.finishGrid)
+        self.commandButton.grid(row=0, column=0, sticky='W')
+        self.keepGridLabel = tk.Label(self.buttonsFrame, text='Keep grid?')
+        self.keepGridLabel.grid(row=0, column=1)
+        self.keepGridVar = tk.IntVar()
+        self.keepGridVar.set(0)
+        self.checkButton = tk.Checkbutton(self.buttonsFrame, variable=self.keepGridVar)
+        self.checkButton.grid(row=0, column=2)
 
         self.fieldFrame = tk.Frame(self.window)
         self.fieldFrame.grid(row=1, column=0)
@@ -26,16 +34,14 @@ class RoutePlanningSimulator(object):
         self.main()
 
     def main(self):
-        #delete or empty widgets
-        for child in self.buttonsFrame.winfo_children():
-            child.destroy()
         #create and configure widgets
-        self.commandButton = tk.Button(self.buttonsFrame, text='Finish grid', command=self.finishGrid)
-        self.commandButton.grid(row=0, column=0)
-        self.fieldArray = np.zeros(self.gridSize, dtype=int)
+        self.commandButton.config(text='Finish grid', command=self.finishGrid)
+        if self.keepGridVar.get() == 0:
+            self.fieldArray = np.zeros(self.gridSize, dtype=int)
         for i in range(self.w):
             for j in range(self.h):
-                self.fieldCanvas.create_rectangle(i*self.gridDelta, j*self.gridDelta, (i+1)*self.gridDelta, (j+1)*self.gridDelta, fill='white')
+                if self.fieldArray[j][i] == 0:
+                    self.fieldCanvas.create_rectangle(i*self.gridDelta, j*self.gridDelta, (i+1)*self.gridDelta, (j+1)*self.gridDelta, fill='white')
         self.fieldCanvas.bind('<ButtonPress-1>', self.setGrid)
         self.startPosition, self.endPosition = None, None
 
@@ -52,7 +58,7 @@ class RoutePlanningSimulator(object):
             self.fieldCanvas.create_rectangle(x*self.gridDelta, y*self.gridDelta, (x+1)*self.gridDelta, (y+1)*self.gridDelta, fill='white')
 
     def finishGrid(self):
-        self.commandButton.config(text='Plan route', command=self.planRoute)
+        self.commandButton.config(text='Plan route', command=self.planRoute)        
         self.fieldCanvas.bind('<ButtonPress-1>', self.setStartPosition)
         self.fieldCanvas.bind('<ButtonPress-3>', self.setEndPosition)
 
