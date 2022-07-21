@@ -164,5 +164,5 @@ if __name__ == '__main__':
 ##    screen_width, screen_height = 500, 500
 ##    window.geometry(str(screen_width) + 'x' + str(screen_height))
 ##    window.update_idletasks() #with this window.winfo_width() returns the correct value
-    RPS = RoutePlanningSimulator(window)
+    RPS = RoutePlanningSimulator(window, canvasSize=(500, 500), gridSize=(20, 20))
     window.mainloop()
