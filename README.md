@@ -10,7 +10,7 @@ route-planning.py: RoutePlanningSimulator object is defined here. It contains th
 
 How tot use:
 Run to route-planning.py to use.
-A 20x20 grid is created on a tkinter canvas. White cells are free, black cells are walls. You can change the state of a cells by left click. If you are ready with the field, click Finish grid.
+A 20x20 grid is created on a tkinter canvas. Each cell represents a place in a 2D space. Movement is possible in the neighboring empty cell in the directions up, down, left and right (diagonally not). White cells are empty, black cells are walls. You can change the state of a cell by a left click. If you are ready with the field, click Finish grid.
 You can set the start position with a left click (display as blue cell) and the end position with a right click (display as red cell). Both must be selected for the program to run properly. Click Plan route when ready.
 The route between the selected points is created and displayed as a chain of green cells.
 You can restart the program by clicking Main menu. You can use the last grid if the Keep grid? checkbutton is checked.
