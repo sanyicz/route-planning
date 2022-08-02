@@ -61,6 +61,16 @@ class RoutePlanningSimulator(object):
         self.commandButton.config(text='Plan route', command=self.planRoute)        
         self.fieldCanvas.bind('<ButtonPress-1>', self.setStartPosition)
         self.fieldCanvas.bind('<ButtonPress-3>', self.setEndPosition)
+##        self.endPointIndex = 0
+##        self.fieldCanvas.bind('<ButtonPress-1>', self.setRouteEndpoints)
+
+    def setRouteEndpoints(self, event):
+        #for smartphone touch screen
+        self.endPointIndex = (self.endPointIndex + 1) % 2
+        if self.endPointIndex == 1:
+            self.setStartPosition(event)
+        else: #self.endPointIndex = 0
+            self.setEndPosition(event)
 
     def setStartPosition(self, event):
         x, y = event.x, event.y #left mouse click coordinates in pixel
